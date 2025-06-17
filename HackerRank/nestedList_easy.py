@@ -1,26 +1,29 @@
 if __name__ == '__main__':
+
     python_students = []
+
     for _ in range(int(input())):
         name = input()
         score = float(input())
         python_students.append([name, score])
 
-    second_lowest = []
+    python_students.sort(key=lambda x: x[1])
+    student_mark = dict(python_students)
+    new_students_list = []
 
-    python_students.sort(key=lambda each: each[1])
+    for key, value in student_mark.items():
+        if value > min(student_mark.values()):
+            new_students_list.append([key, value])
 
-    second_lowest_1 = python_students[1]
-    second_lowest.append(second_lowest_1[0])
+    dict_new_students = dict(new_students_list)
+    second_lowest = min(dict_new_students.values())
+    names_sec_lowest = []
 
-    second_lowest_2 = ''
+    for key, value in dict_new_students.items():
+        if value == second_lowest:
+            names_sec_lowest.append(key)
 
-    for each_mark in python_students:
-        if each_mark[1] == second_lowest_1[1]:
-            second_lowest_2 = each_mark
+    names_sec_lowest.sort()
 
-    second_lowest.append(second_lowest_2[0])
-
-    second_lowest.sort()
-    for name in second_lowest:
+    for name in names_sec_lowest:
         print(name)
-
